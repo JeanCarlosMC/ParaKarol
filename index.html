@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Te adoro 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- FUENTES BONITAS -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&display=swap" rel="stylesheet">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background: url('imagenn.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Pacifico', cursive;
+    }
+
+    .mensaje {
+      position: absolute;
+      white-space: nowrap;
+      font-size: 40px;
+      color: hsl(0, 100%, 85%);
+      text-shadow: 0 0 5px white, 0 0 10px pink;
+      animation: caer 5s linear forwards, parpadeo 1s infinite alternate;
+      opacity: 0;
+    }
+
+    @keyframes caer {
+      0% {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+
+    @keyframes parpadeo {
+      from {
+        opacity: 1;
+        text-shadow: 0 0 5px white, 0 0 10px pink;
+      }
+      to {
+        opacity: 0.7;
+        text-shadow: 0 0 2px white, 0 0 5px pink;
+      }
+    }
+
+    #contenedor {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .titulo {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 65px;
+      font-family: 'Great Vibes', cursive;
+      color: white;
+      text-shadow: 0 0 10px red, 0 0 20px hotpink;
+      z-index: 3;
+      text-align: center;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="titulo">Linda muchachita 💖</div>
+  <div id="contenedor"></div>
+
+  <audio autoplay loop>
+    <source src="cancion.jpg.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
+
+  <script>
+    const contenedor = document.getElementById("contenedor");
+    const mensajes = ["Te adoro", "Te quiero"];
+
+    function crearLetra() {
+      const letra = document.createElement("div");
+      letra.className = "mensaje";
+      letra.textContent = mensajes[Math.floor(Math.random() * mensajes.length)];
+      letra.style.left = `${Math.random() * window.innerWidth}px`;
+      letra.style.color = `hsl(${Math.random() * 360}, 100%, 85%)`;
+      contenedor.appendChild(letra);
+      setTimeout(() => letra.remove(), 5000);
+    }
+
+    setInterval(crearLetra, 400);
+  </script>
+
+</body>
+</html>
